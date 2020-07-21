@@ -77,10 +77,14 @@ userProductController.addGoldProduct = async (req, res) => {
       user_id: user_id,
     });
 
+    const body = req.body;
+
+
     const gold = result.gold;
-    const testObj = {"carat":21,"item_name":"ringo","weight_type":"tola","weight":200}
+    const testObj = {"carat":Number(body.carat) || 21,"item_name":body.item_name,"weight_type":"tola","weight":Number(body.weight) || 0}
     const final = [...gold, testObj]
-    console.log('body', req.body)
+    console.log('body', body)
+    console.log('params', req.params)
     console.log('gold', result.gold)
     console.log('final', final)
     updates = {'gold': final};
